@@ -24,7 +24,7 @@ public class RequestInfo extends AsyncTask<String, String, String> {
 
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    public static final String URL_IP = "http://192.168.1.177/";
+    public static final String URL_IP = "http://www.medesteetika.ee/";
 
     private boolean connected = false;
 
@@ -146,6 +146,13 @@ public class RequestInfo extends AsyncTask<String, String, String> {
                 list.add(s);
             }
             OrderSrceen.orders = list;
+        } else if(fileName.equals("request_posts.php")){
+            List<String> postInfo =  new ArrayList<String>();
+            String[] dataSplit = result.split("\\|");
+            for(String data : dataSplit){
+                postInfo.add(data);
+            }
+            RemovePacks.postTypes = postInfo;
         }
     }
 

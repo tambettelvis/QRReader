@@ -6,4 +6,6 @@
         android:id="@+id/change_user"/>
     <item android:title="Tööde nimekiri"
         android:id="@+id/go_work_screen"/>
+    <item android:title="Eemalda pakke"
+        android:id="@+id/go_remove_pack_screen"/>
 </menu>

@@ -126,16 +126,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         //Get info from web.
         new RequestInfo(this).execute("request.php", "recive");
         new RequestInfo(this).execute("request_employee.php", "recive");
         new RequestInfo(this).execute("request_orders.php", "recive");
-
-
-
+        new RequestInfo(this).execute("request_posts.php", "recive");
 
     }
 
@@ -156,6 +151,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if(id == R.id.go_work_screen){
             Intent getScreenInent = new Intent(this, WorkScreen.class);
+            startActivity(getScreenInent);
+            return true;
+        } else if(id == R.id.go_remove_pack_screen){
+            Intent getScreenInent = new Intent(this, RemovePacks.class);
             startActivity(getScreenInent);
             return true;
         }
