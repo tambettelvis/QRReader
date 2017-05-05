@@ -4,4 +4,6 @@
 
     <item android:title="Vaheta kasutajat"
         android:id="@+id/change_user"/>
+    <item android:title="Tööde nimekiri"
+        android:id="@+id/go_work_screen"/>
 </menu>

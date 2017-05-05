@@ -4,12 +4,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.Console;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -42,7 +37,6 @@ public class RequestInfo extends AsyncTask<String, String, String> {
     private String fileName = "";
 
     public RequestInfo(MainActivity mainActivity){
-        pdLoading = new ProgressDialog(mainActivity);
         this.mainActivity = mainActivity;
     }
 
@@ -77,6 +71,9 @@ public class RequestInfo extends AsyncTask<String, String, String> {
                         + URLEncoder.encode(params[2], "UTF-8") + "&" + URLEncoder.encode("action", "UTF-8") + "="
                         + URLEncoder.encode(params[3], "UTF-8") + "&" + URLEncoder.encode("employee", "UTF-8") + "=" +
                             URLEncoder.encode(params[4], "UTF-8");
+                if(params.length == 6) {
+                    data += "&" + URLEncoder.encode("order_id", "UTF-8") + "=" + URLEncoder.encode(params[5], "UTF-8");
+                }
                 Log.d("RequestInfo", data);
 
                 wr.write(data);
@@ -140,9 +137,16 @@ public class RequestInfo extends AsyncTask<String, String, String> {
             }
             LoginScreen.employees = list;
             mainActivity.changeToLoginLayout();
+        } else if(fileName.equals("request_orders.php")){
+            List<String> list = new ArrayList<String>();
+            String[] dataSplit = result.split("\\|");
+            for(String data : dataSplit){
+                String[] a = data.split(",");
+                String s = a[1] + ". " + a[2] + " - " + a[0] + " " + a[3];
+                list.add(s);
+            }
+            OrderSrceen.orders = list;
         }
-        pdLoading.dismiss();
-
     }
 
     public boolean isConnected(){

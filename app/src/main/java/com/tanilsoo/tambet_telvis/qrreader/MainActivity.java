@@ -1,7 +1,6 @@
 package com.tanilsoo.tambet_telvis.qrreader;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,11 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private Button laduBtn;
     private Button immutusBtn;
     private Button laadmineBtn;
-    private RequestInfo requestInfo;
     private int scanMode = 0; //0:Laud, 1:Immutus, 2:Laadimine
 
     @Override
@@ -53,7 +47,15 @@ public class MainActivity extends AppCompatActivity {
                         } else if(scanMode == 1){
                             new RequestInfo(this).execute("senddata.php", "send", qrId, "3", currentEmployee);
                         } else if(scanMode == 2){
-                            new RequestInfo(this).execute("senddata.php", "send", qrId, "4", currentEmployee);
+
+                            Intent orderScreenIntent = new Intent(this, OrderSrceen.class);
+                            orderScreenIntent.putExtra("qr_id", qrId);
+                            final int request = 3;
+                            startActivityForResult(orderScreenIntent, request);
+
+                            //new RequestInfo(this).execute("senddata.php", "send", qrId, "4", currentEmployee);
+
+
                         }
                     }
                 } else {
@@ -78,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
             {
                 TextView textView = (TextView) findViewById(R.id.employee_logged);
                 textView.setText("Sisselogitud: " + currentEmployee);
+            }
+            break;
+
+            case(3):
+            {
+                //TODO
             }
             break;
         }
@@ -122,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Get info from web.
-        requestInfo = new RequestInfo(this);
-        requestInfo.execute("request.php", "recive");
+        new RequestInfo(this).execute("request.php", "recive");
         new RequestInfo(this).execute("request_employee.php", "recive");
+        new RequestInfo(this).execute("request_orders.php", "recive");
 
 
 
@@ -145,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
             Intent getScreenIntent = new Intent(this, LoginScreen.class);
             final int result = 2;
             startActivityForResult(getScreenIntent, result);
+            return true;
+        } else if(id == R.id.go_work_screen){
+            Intent getScreenInent = new Intent(this, WorkScreen.class);
+            startActivity(getScreenInent);
             return true;
         }
 

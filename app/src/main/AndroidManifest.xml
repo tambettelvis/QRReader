@@ -26,6 +26,14 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".OrderSrceen"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".WorkScreen"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

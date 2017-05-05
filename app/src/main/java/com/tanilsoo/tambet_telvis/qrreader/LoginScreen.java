@@ -27,10 +27,6 @@ public class LoginScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Log.d("OnCreate", "Employees");
-        for(String i : employees){
-            Log.d("OnCreate", i);
-        }
 
         ListAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employees);
         ListView listView = (ListView)findViewById(R.id.employee_listview);
