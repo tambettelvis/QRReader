@@ -14,7 +14,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Tambe on 06.03.2017.
@@ -142,8 +145,10 @@ public class RequestInfo extends AsyncTask<String, String, String> {
             String[] dataSplit = result.split("\\|");
             for(String data : dataSplit){
                 String[] a = data.split(",");
-                String s = a[1] + ". " + a[2] + " - " + a[0] + " " + a[3];
-                list.add(s);
+                if(!(a.length < 4)) {
+                    String s = a[1] + ". " + a[2] + " - " + a[0] + " " + a[3];
+                    list.add(s);
+                }
             }
             OrderSrceen.orders = list;
         } else if(fileName.equals("request_posts.php")){
@@ -153,6 +158,16 @@ public class RequestInfo extends AsyncTask<String, String, String> {
                 postInfo.add(data);
             }
             RemovePacks.postTypes = postInfo;
+        } else if(fileName.equals("request_jobs.php")){
+            Map<Integer, String> map = new LinkedHashMap<>();
+            String[] dataSplit = result.split("\\|");
+            for(String data : dataSplit){
+                String[] split = data.split(";");
+                if(!(split.length < 2)) {
+                    map.put(Integer.parseInt(split[1]), split[0]);
+                }
+            }
+            WorkScreen.jobs = map;
         }
     }
 

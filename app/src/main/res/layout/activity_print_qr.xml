@@ -5,7 +5,6 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="255dp"
         android:layout_above="@+id/employee_logged"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

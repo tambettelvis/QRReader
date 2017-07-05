@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -43,8 +44,16 @@ public class RemovePacks extends Activity {
         Spinner sItems2 = (Spinner) findViewById(R.id.amt_spinner);
         sItems2.setAdapter(adapter2);
 
+        Button removePacksBtn = (Button)findViewById(R.id.remove_packs_button);
+        removePacksBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO remove - n from pakkidest.
+            }
+        });
 
     }
+
 
     private void createAmountSpinner(){
         for(int i=1; i < 100; i++){

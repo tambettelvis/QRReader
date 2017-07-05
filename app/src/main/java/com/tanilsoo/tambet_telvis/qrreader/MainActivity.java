@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         new RequestInfo(this).execute("request_employee.php", "recive");
         new RequestInfo(this).execute("request_orders.php", "recive");
         new RequestInfo(this).execute("request_posts.php", "recive");
+        new RequestInfo(this).execute("request_jobs.php", "recive");
 
     }
 
