@@ -139,7 +139,7 @@ public class RequestInfo extends AsyncTask<String, String, String> {
                 list.add(name);
             }
             LoginScreen.employees = list;
-            mainActivity.changeToLoginLayout();
+            //mainActivity.changeToLoginLayout();
         } else if(fileName.equals("request_orders.php")){
             List<String> list = new ArrayList<String>();
             String[] dataSplit = result.split("\\|");

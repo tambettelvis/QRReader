@@ -17,7 +17,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String currentEmployee = "DEFAULT";
+    public static String currentEmployee = "NULL";
 
     private Button laduBtn;
     private Button immutusBtn;
@@ -47,11 +47,12 @@ public class MainActivity extends AppCompatActivity {
                         } else if(scanMode == 1){
                             new RequestInfo(this).execute("senddata.php", "send", qrId, "3", currentEmployee);
                         } else if(scanMode == 2){
-
+                            new RequestInfo(this).execute("senddata.php", "send", qrId, "4", MainActivity.currentEmployee, "");
+                            /*
                             Intent orderScreenIntent = new Intent(this, OrderSrceen.class);
                             orderScreenIntent.putExtra("qr_id", qrId);
                             final int request = 3;
-                            startActivityForResult(orderScreenIntent, request);
+                            startActivityForResult(orderScreenIntent, request);*/
 
                             //new RequestInfo(this).execute("senddata.php", "send", qrId, "4", currentEmployee);
 
@@ -96,19 +97,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        laduBtn = (Button)findViewById(R.id.lao_scan);
+        //laduBtn = (Button)findViewById(R.id.lao_scan);
         immutusBtn = (Button)findViewById(R.id.immutus_scan);
         laadmineBtn = (Button)findViewById(R.id.laadimine_scan);
 
         final Activity activity = this;
 
-        laduBtn.setOnClickListener(new View.OnClickListener() {
+        /*laduBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 scanMode = 0;
                 initiateScan(activity);
             }
-        });
+        });*/
 
         immutusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
